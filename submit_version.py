@@ -5,6 +5,7 @@ import numpy as np
 import random
 from collections import deque
 from retro_contest.local import make
+import gym_remote.client as grc
 
 EPISODE = 10000  # Episode limitation
 STEP = 300  # Step limitation in an episode
@@ -203,7 +204,8 @@ class DQN:
 
 def main():
     # initialize OpenAI Gym env and dqn agent
-    env = make(game='SonicTheHedgehog-Genesis', state='LabyrinthZone.Act1')
+    print('connecting to remote environment')
+    env = grc.RemoteEnv('tmp/sock')
     agent = DQN(env)
 
     for episode in range(EPISODE):
