@@ -226,7 +226,7 @@ def main():
         if episode % 100 == 0:
             total_reward = 0
             for i in range(TEST):
-                state = env.reset()
+                state = np.array(env.reset())
                 for j in range(STEP):
                     env.render()
                     action = agent.action(np.array(state))  # direct action for test
