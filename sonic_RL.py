@@ -47,6 +47,10 @@ class DQN:
         self.session = tf.InteractiveSession()
         self.session.run(tf.global_variables_initializer())
 
+    def save_model(self):
+        saver = tf.train.Saver()
+        saver.save(self.session, 'saved_model/model.ckpt')
+
     @staticmethod
     def onehot_action(action):
         """
@@ -222,22 +226,23 @@ def main():
             state = next_state
             if done:
                 break
-        # Test every 100 episodes
-        if episode % 100 == 0:
-            total_reward = 0
-            for i in range(TEST):
-                state = np.array(env.reset())
-                for j in range(STEP):
-                    env.render()
-                    action = agent.action(np.array(state))  # direct action for test
-                    state, reward, done, _ = env.step(action)
-                    total_reward += reward
-                    if done:
-                        break
-            ave_reward = total_reward / TEST
-            print('episode: ', episode, 'Evaluation Average Reward:', ave_reward)
-            if ave_reward >= 200:
-                break
+        # # Test every 100 episodes
+        # if episode % 100 == 0:
+        #     total_reward = 0
+        #     for i in range(TEST):
+        #         state = np.array(env.reset())
+        #         for j in range(STEP):
+        #             env.render()
+        #             action = agent.action(np.array(state))  # direct action for test
+        #             state, reward, done, _ = env.step(action)
+        #             total_reward += reward
+        #             if done:
+        #                 break
+        #     ave_reward = total_reward / TEST
+        #     print('episode: ', episode, 'Evaluation Average Reward:', ave_reward)
+        #     if ave_reward >= 200:
+        #         break
+    agent.save_model()
 
 
 if __name__ == '__main__':
