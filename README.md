@@ -39,9 +39,9 @@ DQN + TensorFlow + gym
 
 ## 项目文件
 
-### 1. 名称
+### 1. [sonic_RL](sonic_RL)
 
-[sonic_RL](sonic_RL)：主文件
+>  代码主文件
 
 #### 1.1 函数
 
@@ -75,4 +75,7 @@ DQN + TensorFlow + gym
 
 - `action(self, state):`：根据greedy来获取行为
 
- 
+### 2. [gotta_learn_fast_report](gotta_learn_fast_report)
+
+> 官方介绍文档
+
